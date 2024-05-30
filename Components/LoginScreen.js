@@ -9,9 +9,9 @@ import {
   } from 'react-native';
   import React from 'react';
   
-  const LoginScreen = () => {
+  const LoginScreen = ({navigation}) => {
     return (
-      <View style={{backgroundColor: '#F0F4F3'}}>
+      <View style={{backgroundColor: '#F0F4F3',flex:1}}>
         
         <Image
           source={{
@@ -38,7 +38,7 @@ import {
       />
       <Text style={styles.text2}>Forgot Password ?</Text>
        
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Dashboard')}>
           <Text style={styles.ButtonText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.text3}>Already have an account ? Sign in</Text>

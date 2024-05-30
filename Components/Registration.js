@@ -9,9 +9,9 @@ import {
   } from 'react-native';
   import React from 'react';
   
-  const Registration = () => {
+  const Registration = ({navigation}) => {
     return (
-      <View style={{backgroundColor: '#F0F4F3'}}>
+      <View style={{backgroundColor: '#F0F4F3',flex:1}}>
         
         <Image
           source={{
@@ -43,7 +43,7 @@ import {
        style={styles.input1}
        placeholder='Confirm password'
       />
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.ButtonText}>Register</Text>
         </TouchableOpacity>
         <Text style={styles.text3}>Already have an account ? Sign in</Text>

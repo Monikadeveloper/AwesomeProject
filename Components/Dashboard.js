@@ -47,42 +47,34 @@ import {
           }}
           style={styles.Image7}
           />
+          <TouchableOpacity><View style={styles.radioWrap}>
+<View style={styles.radio}></View>
+  <Text style={styles.radioText}>Learning Programming by 12 PM</Text>
+</View>
+          </TouchableOpacity>
 
-<Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task1.png',
-          }}
-          style={styles.Image4}
-        />
-        <Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task.png',
-          }}
-          style={styles.Image5}
-        />
-<Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task3.png',
-          }}
-          style={styles.Image5}
-        />
-        <Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task4.png',
-          }}
-          style={styles.Image6}
-        />
-        <Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task5.png',
-          }}
-          style={styles.Image6}
-        />
-{/* <Image
-          source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/plus.png',
-          }}
-          style={styles.Image3} */}
+          <TouchableOpacity><View style={styles.radioWrap}>
+<View style={styles.radio2}></View>
+  <Text style={styles.radioText}>Learn how to cook by 1 PM</Text>
+</View>
+          </TouchableOpacity>
+          <TouchableOpacity><View style={styles.radioWrap}>
+<View style={styles.radio2}></View>
+  <Text style={styles.radioText}>Learn how to play at 1 PM</Text>
+</View>
+          </TouchableOpacity>
+          <TouchableOpacity><View style={styles.radioWrap}>
+<View style={styles.radio2}></View>
+  <Text style={styles.radioText}>Have lunch at 4 PM</Text>
+</View>
+          </TouchableOpacity>
+          <TouchableOpacity><View style={styles.radioWrap}>
+<View style={styles.radio2}></View>
+  <Text style={styles.radioText}>Going to travel 6 PM</Text>
+</View>
+          </TouchableOpacity>
+
+          
 
 </View>
 </View>
@@ -113,25 +105,7 @@ import {
         width:25,
         alignItems:'flex-end'
       },
-      Image4:{
-  height:18,
-  width: 240,
-margin:10,
-marginTop:20,
-marginLeft:20
-      },
-      Image5:{
-        height:18,
-       width:200,
-        marginLeft:20,
-        margin:10
-            },
-            Image6:{
-                height:18,
-                width:160,
-                marginLeft:20,
-                margin:10
-                    },
+   
       text5:{
       padding:10,
       fontWeight:600,
@@ -175,5 +149,30 @@ marginLeft:20
         marginLeft:20,
         marginBottom:30,
         
-      }
+        
+      },
+      radio:{
+        height:20,
+        width:20,
+        borderColor:'black',
+        borderWidth:2,
+        borderRadius:2,
+        backgroundColor:'#50C2C9',
+       margin:10
+      },
+      radioText:{
+       margin:10
+      },
+      radioWrap:{
+        flexDirection:'row',
+        
+      },radio2:{
+        height:20,
+        width:20,
+        borderColor:'black',
+        borderWidth:2,
+        borderRadius:2,
+       margin:10
+      },
+  
   });

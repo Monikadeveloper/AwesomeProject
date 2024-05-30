@@ -8,9 +8,9 @@ import {
   } from 'react-native';
   import React from 'react';
   
-  const MainScreen = () => {
+  const MainScreen = ({navigation}) => {
     return (
-      <View style={{backgroundColor: '#F0F4F3'}}>
+      <View style={{backgroundColor: '#F0F4F3',flex:1}}>
         <Image
           source={{
             uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/shape.png',
@@ -29,7 +29,7 @@ import {
           Consequat urna quam felis interdum quisque. Malesuada adipiscing
           tristique ut eget sed.
         </Text>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Register')}>
           <Text style={styles.ButtonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
@@ -43,26 +43,27 @@ import {
       fontStyle:'normal',
       fontWeight:'bold',
       fontSize: 18,
-
-  
-      marginLeft: 85,
+      textAlign:'center'
     },
     text2: {
       fontStyle: 'normal',
-      textAlign: 'center',
+    
       fontWeight: 400,
       fontSize: 13,
-      marginLeft: 85,
       marginTop: 20,
+      textAlign:'center',
+      marginLeft:85,
       width: 203,
       height: 100,
+      
+  
     },
     addButton: {
       backgroundColor: '#50C2C9',
       padding: 10,
       borderRadius: 5,
       margin: 15,
-      height: 60,
+      height: 50,
       marginTop: 60,
     },
     ButtonText: {
