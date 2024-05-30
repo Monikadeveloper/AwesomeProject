@@ -76,7 +76,7 @@ import {
       borderRadius: 5,
       margin: 15,
       height: 50,
-      marginTop: 40,
+      marginTop: 30,
     },
     ButtonText: {
       color: 'white',

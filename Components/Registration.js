@@ -8,7 +8,21 @@ import {
     View,
   } from 'react-native';
   import React from 'react';
-  
+  import * as yup from 'yup';
+  import { Formik } from 'formik'
+
+const loginValidationSchema = yup.object().shape({
+  name:yup.string().min(6,'Please enter full name').max(50).required("Please enter your name"),
+  email: yup
+    .string()
+    .email("Please enter valid email")
+    .required('Email Address is Required'),
+  password: yup
+    .string()
+    .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .required('Password is required'),
+    cpassword:yup.string().min(8, ({ min }) => `Password must be at least ${min} characters`).oneOf([yup.ref('password')],'Your password do not match').required('Confirm password is required')
+})
   const Registration = ({navigation}) => {
     return (
       <View style={{backgroundColor: '#F0F4F3',flex:1}}>
@@ -27,26 +41,67 @@ import {
         <Text style={styles.text4}>
           tasks.
         </Text>
+        <Formik
+   validationSchema={loginValidationSchema}
+   initialValues={{ name:'',
+    email:'',
+    password:'',
+    cpassword:''
+    }}
+   onSubmit={values => console.log(values)}
+ >
+   {({
+     handleChange,
+     handleBlur,
+     handleSubmit,
+     values,
+     errors,
+     isValid,
+   }) => (<>
         <TextInput
        style={styles.input1}
        placeholder='Enter your full name'
+       onChangeText={handleChange('name')}
+         onBlur={handleBlur('name')}
+         value={values.name}
+  
       />
+       {errors.name &&
+         <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.name}</Text>}
         <TextInput
        style={styles.input1}
        placeholder='Enter your Email'
+       onChangeText={handleChange('email')}
+         onBlur={handleBlur('email')}
+         value={values.email}
       />
+      {errors.email &&
+         <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.email}</Text>}
         <TextInput
        style={styles.input1}
        placeholder='Enter Password'
+       onChangeText={handleChange('password')}
+         onBlur={handleBlur('password')}
+         value={values.password}
       />
+      {errors.password &&
+         <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.password}</Text>}
         <TextInput
        style={styles.input1}
-       placeholder='Confirm password'
+       placeholder='Confirm Password'
+       onChangeText={handleChange('cpassword')}
+         onBlur={handleBlur('cpassword')}
+         value={values.cpassword}
       />
+      {errors.cpassword &&
+         <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.cpassword}</Text>}
+        <Text style={styles.text3}>Already have an account ? Sign in</Text>
+        </>
+        )}
+        </Formik>
         <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.ButtonText}>Register</Text>
         </TouchableOpacity>
-        <Text style={styles.text3}>Already have an account ? Sign in</Text>
       </View>
     );
   };
@@ -102,7 +157,7 @@ import {
       borderRadius: 5,
       margin: 15,
       height: 50,
-      marginTop: 40,
+      marginTop: 20,
     },
     ButtonText: {
       color: 'white',
