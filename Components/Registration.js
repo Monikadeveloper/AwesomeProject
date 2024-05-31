@@ -54,6 +54,7 @@ const loginValidationSchema = yup.object().shape({
      handleChange,
      handleBlur,
      handleSubmit,
+     touched,
      values,
      errors,
      isValid,
@@ -66,7 +67,7 @@ const loginValidationSchema = yup.object().shape({
          value={values.name}
   
       />
-       {errors.name &&
+       {touched.name && errors.name &&
          <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.name}</Text>}
         <TextInput
        style={styles.input1}
@@ -75,7 +76,7 @@ const loginValidationSchema = yup.object().shape({
          onBlur={handleBlur('email')}
          value={values.email}
       />
-      {errors.email &&
+      {touched.email && errors.email &&
          <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.email}</Text>}
         <TextInput
        style={styles.input1}
@@ -84,7 +85,7 @@ const loginValidationSchema = yup.object().shape({
          onBlur={handleBlur('password')}
          value={values.password}
       />
-      {errors.password &&
+      {touched.password && errors.password &&
          <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.password}</Text>}
         <TextInput
        style={styles.input1}
@@ -93,7 +94,7 @@ const loginValidationSchema = yup.object().shape({
          onBlur={handleBlur('cpassword')}
          value={values.cpassword}
       />
-      {errors.cpassword &&
+      {touched.cpassword && errors.cpassword &&
          <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.cpassword}</Text>}
         <Text style={styles.text3}>Already have an account ? Sign in</Text>
         </>
@@ -117,7 +118,7 @@ const loginValidationSchema = yup.object().shape({
       height:27,
     marginLeft: 87,
     marginTop:0,
-    marginBottom:10,
+   
     
     color:'#000000'
     },
@@ -134,7 +135,7 @@ const loginValidationSchema = yup.object().shape({
         fontWeight:400,
         fontStyle:'normal',
       textAlign:'center',
-      marginBottom:20,
+    
 
     },
     text3:{
@@ -157,7 +158,7 @@ const loginValidationSchema = yup.object().shape({
       borderRadius: 5,
       margin: 15,
       height: 50,
-      marginTop: 20,
+      marginTop: 10,
     },
     ButtonText: {
       color: 'white',

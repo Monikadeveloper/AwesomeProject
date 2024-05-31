@@ -8,7 +8,21 @@ import {
     View,
   } from 'react-native';
   import React from 'react';
-  
+import { Formik } from 'formik';
+import * as yup from 'yup';
+
+  const loginValidationSchema = yup.object().shape({
+   
+    email: yup
+      .string()
+      .email("Please enter valid email")
+      .required('Email Address is Required'),
+    password: yup
+      .string()
+      .min(8, ({ min }) => `Password must be at least ${min} characters`)
+      .required('Password is required'),
+    
+  })
   const LoginScreen = ({navigation}) => {
     return (
       <View style={{backgroundColor: '#F0F4F3',flex:1}}>
@@ -27,22 +41,51 @@ import {
           }}
           style={styles.Image}
         />
-      
+       <Formik
+   validationSchema={loginValidationSchema}
+   initialValues={{ 
+    email:'',
+    password:'',
+    }}
+   onSubmit={values => console.log(values)}
+ >
+   {({
+     handleChange,
+     handleBlur,
+     handleSubmit,
+     touched,
+     values,
+     errors,
+     isValid,
+   }) => (<>
         <TextInput
        style={styles.input1}
        placeholder='Enter your Email'
+       onChangeText={handleChange('email')}
+       onBlur={handleBlur('email')}
+       value={values.email}
       />
+       {touched.email && errors.email &&
+         <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.email}</Text>}
         <TextInput
        style={styles.input1}
        placeholder='Enter Password'
-      />
+       onChangeText={handleChange('password')}
+       onBlur={handleBlur('password')}
+       value={values.password}
+    />
+    {touched.password && errors.password &&
+       <Text style={{ fontSize: 10, color: 'red',textAlign:'center' }}>{errors.password}</Text>}
       <Text style={styles.text2}>Forgot Password ?</Text>
        
         <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('Dashboard')}>
           <Text style={styles.ButtonText}>Login</Text>
         </TouchableOpacity>
-        <Text style={styles.text3}>Already have an account ? Sign in</Text>
+        <Text style={styles.text3}>Already have an account ? Sign in</Text></>)
+  }
+  </Formik>      
       </View>
+
     );
   };
   
@@ -54,7 +97,7 @@ import {
       fontWeight: 'bold',
       fontSize: 18,
   textAlign:'center',
-    marginBottom:10,
+    
     
     color:'#000000'
     },
@@ -76,7 +119,7 @@ import {
       borderRadius: 5,
       margin: 15,
       height: 50,
-      marginTop: 30,
+      
     },
     ButtonText: {
       color: 'white',
@@ -89,7 +132,7 @@ import {
       height: 138,
       width: 184,
      marginLeft:90,
-      marginBottom:20
+   
     },
     text3:{
         fontStyle:'normal',
@@ -97,9 +140,7 @@ import {
         marginLeft:40,
         fontWeight:400,
         fontSize:16,
-        
-        width:272,
-        height:25
+      
 
     },
     text2:{

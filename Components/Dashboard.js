@@ -1,5 +1,6 @@
 import {
     Button,
+    FlatList,
     Image,
     StyleSheet,
     Text,
@@ -7,9 +8,27 @@ import {
     TouchableOpacity,
     View,
   } from 'react-native';
-  import React from 'react';
+  import React, { useState } from 'react';
   
   const Dashboard = () => {
+    const[task,setTask]=useState('')
+    const [tasklist,setTasklist]=useState([])
+
+    const handleAdd=()=>{
+      setTasklist([...tasklist,task])
+      setTask('')
+    }
+    const renderTodo = ({item, index}) => {
+      return (<View style={styles.radioWrap}>
+         <View style={styles.radio}>
+    
+    </View>
+        <Text style={styles.radioText}>{item}</Text>
+        
+       
+        
+      </View>)
+    };
     return (<>
       <View style={{backgroundColor: '#50C2C9'}}>
         
@@ -41,18 +60,30 @@ import {
         
        
 <View style={styles.view3}>
+  <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',margin:10}}>
+  <TextInput style={styles.radioText}
+  placeholder='Daily Task'
+  value={task}
+  onChangeText={(userText)=>setTask(userText)}/>
+  <TouchableOpacity onPress={handleAdd}>
 <Image
           source={{
-            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/task_heading.png',
+            uri: '/Users/dr.mac/Desktop/reactnative/AwesomeProject/Components/plus.png',
           }}
           style={styles.Image7}
           />
-          <TouchableOpacity><View style={styles.radioWrap}>
-<View style={styles.radio}></View>
-  <Text style={styles.radioText}>Learning Programming by 12 PM</Text>
-</View>
           </TouchableOpacity>
+          </View>
+        
+       
+    <FlatList
+          
+  data={tasklist}
+        renderItem={renderTodo}/>
+    
 
+      
+{/* 
           <TouchableOpacity><View style={styles.radioWrap}>
 <View style={styles.radio2}></View>
   <Text style={styles.radioText}>Learn how to cook by 1 PM</Text>
@@ -72,7 +103,7 @@ import {
 <View style={styles.radio2}></View>
   <Text style={styles.radioText}>Going to travel 6 PM</Text>
 </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           
 
@@ -136,9 +167,9 @@ import {
         marginLeft:140
       },
       Image7:{
-        height:18,
-        width:300,
-        margin:10
+        height:25,
+        width:25,
+      
       },
       
       view3:{
@@ -164,7 +195,8 @@ import {
        margin:10
       },
       radioWrap:{
-        flexDirection:'row',
+        flexDirection:"row"
+       
         
       },radio2:{
         height:20,
